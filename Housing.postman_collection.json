@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "0b469946-53f0-403f-b3da-d3d85c23d823",
+		"name": "Housing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8763417",
+		"_collection_link": "https://blie-elephant.postman.co/workspace/PHI_Consent~cda7e1ae-e9e5-4ab0-9ae3-539a3568ab8e/collection/8763417-0b469946-53f0-403f-b3da-d3d85c23d823?action=share&creator=8763417&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"AccessToken\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/login",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statement",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/statement",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"statement"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "Quibusdam",
+									"disabled": true
+								},
+								{
+									"key": "start_price",
+									"value": "14",
+									"disabled": true
+								},
+								{
+									"key": "end_price",
+									"value": "16",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "9",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"test\",\n    \"desc\": \"description\",\n    \"price\": 2222,\n    \"address\": \"somewhere\",\n    \"currency\": \"gel\",\n    \"property_type_id\": 2,\n    \"floors\": 2,\n    \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/statement",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"statement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/statement/1",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"statement",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"test\",\n    \"desc\": \"description\",\n    \"price\": 2222,\n    \"address\": \"somewhere\",\n    \"currency\": \"gel\",\n    \"property_type_id\": 2,\n    \"floors\": 2,\n    \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/statement/2",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"statement",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"test\",\n    \"desc\": \"description\",\n    \"price\": 2222,\n    \"address\": \"somewhere\",\n    \"currency\": \"gel\",\n    \"property_type_id\": 5,\n    \"floors\": 2,\n    \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/statement/2",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"statement",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{AccessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "AccessToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BaseUrl",
+			"value": "http://localhost/api",
+			"type": "string"
+		}
+	]
+}
